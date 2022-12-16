@@ -190,73 +190,75 @@ async def scrape(asin):
             await check_message(product)
 @client.on(events.NewMessage(chats=("https://t.me/amzn_discount","@prezzipazzeschi","@misterprezzo","https://t.me/scontierisparmio","https://t.me/testoneeeee","https://t.me/amazon_angrese","https://t.me/testoneeeee","https://t.me/canalifighi","https://t.me/techbestdeals","https://t.me/le_offerte_dal_web_group","https://t.me/affarometro","https://t.me/overVoltOfficial","https://t.me/stockdroid2","https://t.me/stockdroid","https://t.me/glierroristidelweb","https://t.me/stockdroid")))
 async def handler(event):
-    # Respond whenever someone says "Hello" and something else
-    print("Trovato nuovo messaggio")
-    print(event)
-    l=[]
-    e=str(event).rstrip()
-    e=e.split('http://www.amazon.it')
-    e.pop(0)
-    for el in e:
-        el=el.split(' ')[0].split("'")[0].split('"')[0]
-        el=el.split('B0')
-        el.pop(0)
-        for v in el:
-            asin="B0"+v[:8]
-            if(asin.isalnum()):
-                if asin not in l:
-                    l.append(asin)
-                    await scrape(asin)
-    e=str(event).rstrip()
-    e=e.split("https://www.amazon.it")
-    e.pop(0)
-    for el in e:
-        el=el.split(' ')[0].split("'")[0].split('"')[0]
-        el=el.split('B0')
-        el.pop(0)
-        for v in el:
-            asin="B0"+v[:8]
-            if(asin.isalnum()):
-                if asin not in l:
-                    l.append(asin)
-                    await scrape(asin)
-    e=str(event).rstrip()
-    e=e.split("https://amazon.it")
-    e.pop(0)
-    for el in e:
-        el=el.split(' ')[0].split("'")[0].split('"')[0]
-        el=el.split('B0')
-        el.pop(0)
-        for v in el:
-            asin="B0"+v[:8]
-            if(asin.isalnum()):
-                if asin not in l:
-                    l.append(asin)
-                    await scrape(asin)
-    e=str(event).rstrip()
-    e=e.split("http://amazon.it")
-    e.pop(0)
-    for el in e:
-        el=el.split(' ')[0].split("'")[0].split('"')[0]
-        el=el.split('B0')
-        el.pop(0)
-        for v in el:
-            asin="B0"+v[:8]
-            if(asin.isalnum()):
-                if asin not in l:
-                    l.append(asin)
-                    await scrape(asin)
-    e=str(event).rstrip()
-    e=e.split("https://amzn.to/")
-    e.pop(0)
-    for v in e:
-        url=requests.get("https://amzn.to/"+v[:7]).url
-        url=url.split('B0')
-        url.pop(0)
-        for v in url:
-            asin="B0"+v[:8]
-            if(asin.isalnum()):
-                if asin not in l:
-                    l.append(asin)
-                    await scrape(asin)
+    now = datetime.datetime.now()
+    if(now.hour<22 and now.hour>=10):
+        # Respond whenever someone says "Hello" and something else
+        print("Trovato nuovo messaggio")
+        print(event)
+        l=[]
+        e=str(event).rstrip()
+        e=e.split('http://www.amazon.it')
+        e.pop(0)
+        for el in e:
+            el=el.split(' ')[0].split("'")[0].split('"')[0]
+            el=el.split('B0')
+            el.pop(0)
+            for v in el:
+                asin="B0"+v[:8]
+                if(asin.isalnum()):
+                    if asin not in l:
+                        l.append(asin)
+                        await scrape(asin)
+        e=str(event).rstrip()
+        e=e.split("https://www.amazon.it")
+        e.pop(0)
+        for el in e:
+            el=el.split(' ')[0].split("'")[0].split('"')[0]
+            el=el.split('B0')
+            el.pop(0)
+            for v in el:
+                asin="B0"+v[:8]
+                if(asin.isalnum()):
+                    if asin not in l:
+                        l.append(asin)
+                        await scrape(asin)
+        e=str(event).rstrip()
+        e=e.split("https://amazon.it")
+        e.pop(0)
+        for el in e:
+            el=el.split(' ')[0].split("'")[0].split('"')[0]
+            el=el.split('B0')
+            el.pop(0)
+            for v in el:
+                asin="B0"+v[:8]
+                if(asin.isalnum()):
+                    if asin not in l:
+                        l.append(asin)
+                        await scrape(asin)
+        e=str(event).rstrip()
+        e=e.split("http://amazon.it")
+        e.pop(0)
+        for el in e:
+            el=el.split(' ')[0].split("'")[0].split('"')[0]
+            el=el.split('B0')
+            el.pop(0)
+            for v in el:
+                asin="B0"+v[:8]
+                if(asin.isalnum()):
+                    if asin not in l:
+                        l.append(asin)
+                        await scrape(asin)
+        e=str(event).rstrip()
+        e=e.split("https://amzn.to/")
+        e.pop(0)
+        for v in e:
+            url=requests.get("https://amzn.to/"+v[:7]).url
+            url=url.split('B0')
+            url.pop(0)
+            for v in url:
+                asin="B0"+v[:8]
+                if(asin.isalnum()):
+                    if asin not in l:
+                        l.append(asin)
+                        await scrape(asin)
 client.run_until_disconnected() 
