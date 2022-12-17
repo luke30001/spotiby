@@ -68,7 +68,7 @@ async def toc(json):
 SCONTO:📉"""+json["percentage"]+"""📉
 Categoria:"""+json["category"]
     bts=[[Button.url("Acquista prodotto", url=json["url"])]]
-    await bot.send_file("https://t.me/Prezz1",requests.get(json["image"],headers=h).url,caption=msg,buttons=bts,force_document=False)
+    await bot.send_file("https://t.me/Luca300",requests.get(json["image"],headers=h).url,caption=msg,buttons=bts,force_document=False)
 async def check_message(json):
     m=int(time.strftime("%M"))
     lm=int(await read("botm"))+5
@@ -86,7 +86,7 @@ async def check_message(json):
                     await post(json)
                     await toc(json)
                 await writes("botm",str(m))
-        await append(str(today),json["url"].split("/dp/")[1])
+        await append(str(today),json["url"].split("/dp/")[1].split("?")[0])
 async def scrape(asin):
     global html,soup,tc
     today = date.today()
@@ -177,7 +177,7 @@ async def scrape(asin):
                 print("no category")
                 await log(html)
             try:
-                product["url"]=url
+                product["url"]=url+"?tag=luke300011-21"
             except:
                 print("no url")
             try:
