@@ -68,7 +68,7 @@ async def toc(json):
 SCONTO:📉"""+json["percentage"]+"""📉
 Categoria:"""+json["category"]
     bts=[[Button.url("Acquista prodotto", url=json["url"])]]
-    await bot.send_file("https://t.me/Luca300",requests.get(json["image"],headers=h).url,caption=msg,buttons=bts,force_document=False)
+    await bot.send_file("https://t.me/Prezz1",requests.get(json["image"],headers=h).url,caption=msg,buttons=bts,force_document=False)
 async def check_message(json):
     m=int(time.strftime("%M"))
     lm=int(await read("botm"))+5
